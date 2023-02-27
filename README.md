@@ -20,7 +20,8 @@ Before using a smart contract, it is important to have a basic understanding of 
 Get the DID contract source code by command:
 
 ```
-$ git clone 请按需补充代码拉取地址！！！！
+$ git clone https://github.com/BSN-Spartan/DID-Contract/blob/main/did/DidContract.sol
+
 ```
 
 For beginners, the contracts in this application can be deployed by the steps in [Spartan Quick Testing](https://www.spartan.bsn.foundation/main/quick-testing#step1).
