@@ -1,6 +1,7 @@
-# DID-Contract
+# Spartan DID Contract
+
 [![Smart Contract](https://badgen.net/badge/smart-contract/Solidity/orange)](https://soliditylang.org/) 
- 
+
 Digital identity is the body of information about an individual, organization or electronic device that exists online. It forms a public key that can be queried and identified through the network or related equipment. With the emergence and popularity of the Internet, it is generally believed that the evolution of digital identity has gone through three stages: centralized identity, alliance identity, and decentralized identity. Ideally, in the decentralized identity stage, users can fully control their own information.
 
 In the W3C Recommendation, DID (Decentralized Identifiers) is defined as a new globally unique identifier, which can achieve verifiable and decentralized digital identity. This identifier can be used not only for people, but for everything, such as a car, an animal, and even a machine. [Click to learn more about DID.](https://www.w3.org/TR/2022/REC-did-core-20220719/#abstract)
@@ -11,7 +12,7 @@ Before using a smart contract, it is important to have a basic understanding of 
 
 ## Overview 
 
-* The DID cannot perform real-name authentication. You can implement real-name authentication function in the business system, and then bind the user in the system to the DID.
+* The DID cannot perform real-name authentication. However, you can implement real-name authentication function in the business system and then bind the user in the system to the DID.
 
 * If the same sender calls the "Create DID" function multiple times, the smart contract will generate multiple different DIDs. If you need to ensure that each user has only one DID, you can logically determine whether this sender has been bound to a DID in the business system.
 
@@ -21,12 +22,11 @@ Get the DID contract source code by command:
 
 ```
 $ git clone https://github.com/BSN-Spartan/DID-Contract.git
-
 ```
 
 For beginners, the contracts in this application can be deployed by the steps in [Spartan Quick Testing](https://www.spartan.bsn.foundation/main/quick-testing#step1).
 
-In this application, there are two contracts: DidContract and LibBytesMap. Follow steps below to deploy and use them:
+In this application, there are two contracts: DidContract and LibBytesMap. Follow the steps below to deploy and use them:
 
 1. Deploy LibBytesMap contract.
 2. Deploy DidContract contract.
@@ -64,7 +64,7 @@ In this application, there are two contracts: DidContract and LibBytesMap. Follo
 
 ### createDid
 
-"createDid" is a public function. It will generate a DID identifier and the description document of the sender. The DID and document are one-to-one relationships and stored in the form of Key-Value on the chain.
+"createDid" is a public function. It will generate a DID identifier and the description document of the sender. The DID and document have a one-to-one relationship and are stored in the form of Key-Value on the chain.
 
 ```
 function createDid(string memory did, string memory didDocument)
@@ -81,7 +81,7 @@ function getDocument(string memory did)
 
 ### updateDocument
 
-"updateDocument" is a public function. If the authentication private key of the DID is lost or exposed to others, you can update the DID Document by a new private and public key pair. After updating the authentication public key and the signature in the DID Document, you can submit it to the chain through this function. The sender will be verified internally in the contract. If it is the same sender with the one creating the DID, the document will be updated; otherwise, the update will be failed.
+"updateDocument" is a public function. If the authentication private key of the DID is lost or exposed to others, you can update the DID Document by a new private and public key pair. After updating the authentication public key and the signature in the DID Document, you can submit it to the chain through this function. The sender will be verified internally in the contract. If it is the same sender as the one creating the DID, the document will be updated; otherwise, the update will be failed.
 
 ```
 function updateDocument(string memory did, string memory didDocument)
